@@ -1,0 +1,75 @@
+header {
+	border: 2px black solid;
+	border-radius: 15px;
+	box-shadow: 5px 5px 5px grey;
+	background-color: lightblue;
+	margin: 5px;
+	text-align: center;
+}
+
+#jauge {
+	border: 2px black solid;
+	background-image: linear-gradient(to right, firebrick, green);
+	margin: 30px;
+	padding: 5px;
+	text-align: center;
+
+}
+
+.container {
+	/*border: 2px red solid;*/
+	margin: 10px;
+	padding: 10px;
+}
+
+.container2 {
+	display: flex;
+	justify-content: space-evenly;
+	/*border: 2px blue solid;*/
+	margin: 10px;
+	padding: 5px;
+	font-size: 30px;
+}
+h3 {
+	margin: 0px;
+	font-size: 45px;
+}
+.pr {
+	margin-bottom: ;
+}
+.role {
+	border: 2px black solid;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px grey;
+	background-color: dodgerblue;
+	margin: 5px;
+	padding: 10px;
+	width: 25%;
+	height: 100px;
+	text-align: center;
+}
+
+.container3 {
+	display: flex;
+	justify-content: space-evenly;
+	flex-wrap: wrap;
+	/*border: 2px green solid;*/
+	margin: 5px;
+	padding: 10px;
+}
+.joueurn {
+	border: 2px black solid;
+	border-radius: 10px;
+	box-shadow: 5px 5px 5px grey;
+	background-color: darkorange;
+	margin: 5px;
+	padding: 10px;
+	width: 15%;
+	height: 120px;
+	text-align: center;
+	font-size: 30px;
+}
+
+#joueur4, #joueur7, #joueur15 {
+	background-color: yellow;
+}
