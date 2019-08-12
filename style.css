@@ -73,3 +73,8 @@ h3 {
 #joueur4, #joueur7, #joueur15 {
 	background-color: yellow;
 }
+
+input{
+	width: 90%;
+	height: 100px;
+}
