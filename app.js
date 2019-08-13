@@ -17,47 +17,75 @@ let interval;
 let caTourne = false;
 let couleurBarre = "green";
 
-id("lancer").addEventListener("click", function () {
-    if (caTourne === false) {
-        caTourne = true;
-        interval = setInterval(retirerSeconde, 10);
-    }
+// Bouton "Lancer"
+id("lancer").addEventListener("click", function() {
+	if (caTourne === false) {
+		caTourne = true;
+		interval = setInterval(retirerSeconde, 1);
+	}
+});
+
+// Bouton "Pause"
+id("pause").addEventListener("click", function() {
+	caTourne = false;
+	clearInterval(interval);
+});
+
+// Bouton "Stop"
+id("stop").addEventListener("click", function() {
+	caTourne = false;
+	clearInterval(interval);
+	revenirDebut();
 });
 
 function retirerSeconde() {
-    secondes--;
-    let pourcentage = (100 * secondes) / 300;
+	secondes--;
+	let pourcentage = (100 * secondes) / 300;
 
-    if (secondes === 60) {
-        couleurBarre = "darkorange";
-    }
+	// On commence à stresser quand il reste 60 secondes
+	if (secondes === 60) {
+		couleurBarre = "darkorange";
+	}
 
-    if (secondes === 15) {
-        couleurBarre = "red";
-    }
+	// On stresse beaucoup quand il reste 15 secondes
+	if (secondes === 15) {
+		couleurBarre = "red";
+	}
 
-    if (secondes === 0) {
-        secondes = 300;
-        couleurBarre = "green";
+	// On revient au début quand le chrono arrive à 0
+	if (secondes === 0) {
+        revenirDebut();
         tirageAleatoire();
-    }
+	}
 
-    id("prog").setAttribute("style", `width: ${pourcentage}%;background: ${couleurBarre};transition: 100ms`);
+	// On met à jour l'apparence de la barre de progression à chaque seconde
+	id("prog").setAttribute(
+		"style",
+		`width: ${pourcentage}%;background: ${couleurBarre};`
+	);
 
-    secondesFormate = secondes % 60;
-    minutesFormate = Math.floor(secondes / 60);
-    id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
-        .toString()
-        .slice(-2)}`;
+	// On gère le formatage des minutes et des secondes
+	secondesFormate = secondes % 60;
+	minutesFormate = Math.floor(secondes / 60);
+	id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
+		.toString()
+		.slice(-2)}`;
 }
 
-////////////////////////////////////////////////////////////////////////////
-//Tirage aleatoire + splice
-/*
-let participants = ["Anthony", "Audrey", "Baptiste", "Carole", "Cécile", "Claire", "Elodie",
-    "Fred", "Marie-Laure", "Marveen", "Morgane", "Patern", "Timothée", "Vincent", "Yoan"]
-console.log(participants);
-*/
+function revenirDebut() {
+	secondes = 300;
+	couleurBarre = "green";
+	secondesFormate = secondes % 60;
+	minutesFormate = Math.floor(secondes / 60);
+	id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
+		.toString()
+		.slice(-2)}`;
+	id("prog").setAttribute("style", `width: 100%;background: green`);
+}
+
+
+// Tirage aléatoire :
+
 function tirageAleatoire() {
     function aleatoire() {
         var max = Math.floor(participants.length)
@@ -71,23 +99,25 @@ function tirageAleatoire() {
         console.log(partis);
         if (partis.length) {
             document.getElementById(partis).innerHTML = partis;
-            document.getElementById(partis).classList.add("joueurn2");
+            document.getElementById(partis).classList.add("retourne");
         } else {
             document.getElementById(participants).innerHTML = partis;
-            document.getElementById(participants).classList.add("joueurn2");
+            document.getElementById(participants).classList.add("retourne");
         }
     };
     eliminer();
     console.log(participants);
 }
 
-//Sortir les absents du jour:
+
+
+// Sortir les absents du jour :
+
 $(".joueurn").click(function() {
-    $(this).addClass("joueurn2");
+    $(this).addClass("retourne");
     participants.splice(participants.indexOf(this.id), 1);
     //console.log(this.id);
     console.log(participants);
 })
 
 //tirageAleatoire();
-
