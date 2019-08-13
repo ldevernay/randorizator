@@ -1,3 +1,8 @@
+
+let participants = ["Anthony", "Audrey", "Baptiste", "Carole", "Cécile", "Claire", "Elodie",
+"Fred", "Marie-Laure", "Marveen", "Morgane", "Patern", "Timothée", "Vincent", "Yoan"]
+console.log(participants);
+
 //////////////////////////////////////////////////////////////////////
 //Chrono + Jauge
 
@@ -15,11 +20,12 @@ let couleurBarre = "green";
 id("lancer").addEventListener("click", function () {
     if (caTourne === false) {
         caTourne = true;
-        interval = setInterval(retirerSeconde, 1000);
+        interval = setInterval(retirerSeconde, 10);
     }
 });
 
 function retirerSeconde() {
+    secondes--;
     let pourcentage = (100 * secondes) / 300;
 
     if (secondes === 60) {
@@ -33,11 +39,11 @@ function retirerSeconde() {
     if (secondes === 0) {
         secondes = 300;
         couleurBarre = "green";
+        tirageAleatoire();
     }
 
     id("prog").setAttribute("style", `width: ${pourcentage}%;background: ${couleurBarre};transition: 100ms`);
 
-    secondes--;
     secondesFormate = secondes % 60;
     minutesFormate = Math.floor(secondes / 60);
     id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
@@ -47,11 +53,11 @@ function retirerSeconde() {
 
 ////////////////////////////////////////////////////////////////////////////
 //Tirage aleatoire + splice
-
+/*
 let participants = ["Anthony", "Audrey", "Baptiste", "Carole", "Cécile", "Claire", "Elodie",
     "Fred", "Marie-Laure", "Marveen", "Morgane", "Patern", "Timothée", "Vincent", "Yoan"]
 console.log(participants);
-
+*/
 function tirageAleatoire() {
     function aleatoire() {
         var max = Math.floor(participants.length)
