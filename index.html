@@ -9,12 +9,18 @@
 <body>
 	<div class="container">
 		<header>
-			<h1>Consigne</h1>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam aspernatur neque atque suscipit assumenda ratione esse error ad dicta mollitia quia, minima cupiditate laborum cumque rem. Doloribus cupiditate dicta vero.</p>
+			<button id="tirage" onclick="tirageAleatoire()"> Tirage... </button>
 		</header>
 
 		<div>
-			<div id="jauge">Jauge<div id="chrono">Chrono</div></div>
+
+			<div id="compteur">5:00</div>
+			<div id="jauge">
+				<div id="prog"></div>
+			</div>
+			<button id="lancer">Lancer</button>
+
 			
 			<div id="roles" class="container2">
 				<div class="role" id="uke">
@@ -31,24 +37,28 @@
 				</div>
 			</div>
 			<div id="joueurs" class="container3">
-				<div class="joueurn" id="joueur1">Name 1</div>
-				<div class="joueurn" id="joueur2">Name 2</div>
-				<div class="joueurn" id="joueur3">Name 3</div>
-				<div class="joueurn" id="joueur4"><s>Name 4</s></div>
-				<div class="joueurn" id="joueur5">Name 5</div>
-				<div class="joueurn" id="joueur6">Name 6</div>
-				<div class="joueurn" id="joueur7"><s>Name 7</s></div>
-				<div class="joueurn" id="joueur8">Name 8</div>
-				<div class="joueurn" id="joueur9">Name 9</div>
-				<div class="joueurn" id="joueur10">Name 10</div>
-				<div class="joueurn" id="joueur11">Name 11</div>
-				<div class="joueurn" id="joueur12">Name 12</div>
-				<div class="joueurn" id="joueur13">Name 13</div>
-				<div class="joueurn" id="joueur14">Name 14</div>
-				<div class="joueurn" id="joueur15"><s>Name 15</s></div>
+				<div class="joueurn" id="Anthony">Anthony</div>
+				<div class="joueurn" id="Audrey">Audrey</div>
+				<div class="joueurn" id="Baptiste">Baptiste</div>
+				<div class="joueurn" id="Carole">Carole</div>
+				<div class="joueurn" id="Cécile">Cécile</div>
+				<div class="joueurn" id="Claire">Claire</div>
+				<div class="joueurn" id="Elodie">Elodie</div>
+				<div class="joueurn" id="Fred">Fred</div>
+				<div class="joueurn" id="Marie-Laure">Marie-Laure</div>
+				<div class="joueurn" id="Marveen">Marveen</div>
+				<div class="joueurn" id="Morgane">Morgane</div>
+				<div class="joueurn" id="Patern">Patern</div>
+				<div class="joueurn" id="Timothée">Timothée</div>
+				<div class="joueurn" id="Vincent">Vincent</div>
+				<div class="joueurn" id="Yoan">Yoan</div>
 			</div>
 		</div>
 
 	</div>
+
+
+	<script src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>

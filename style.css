@@ -7,13 +7,35 @@ header {
 	text-align: center;
 }
 
+#compteur {
+	text-align: center;
+	font-size: 70px;
+	margin-top: 30px;
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS",
+		sans-serif;
+}
+
 #jauge {
 	border: 2px black solid;
-	background-image: linear-gradient(to right, firebrick, green);
-	margin: 30px;
-	padding: 5px;
+	margin-bottom: 30px;
 	text-align: center;
+	width: 100%;
+	height: 20px;
+}
 
+#prog {
+	height: 100%;
+	background: green;
+}
+
+#lancer {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	height: 50px;
+	width: 200px;
+	font-size: 30px;
 }
 
 .container {
@@ -32,7 +54,7 @@ header {
 }
 h3 {
 	margin: 0px;
-	font-size: 45px;
+	font-size: 40px;
 }
 .pr {
 	margin-bottom: ;
@@ -65,11 +87,14 @@ h3 {
 	margin: 5px;
 	padding: 10px;
 	width: 15%;
-	height: 120px;
+	height: 90px;
 	text-align: center;
 	font-size: 30px;
 }
-
-#joueur4, #joueur7, #joueur15 {
-	background-color: yellow;
+.joueurn2 {
+	transform: rotate3d(0, 1, 0, 360deg);
+	background: rgb(163, 163, 163);
+	text-decoration: line-through;
+	transition: 1000ms cubic-bezier(.18,.89,.32,1.28);
 }
+
