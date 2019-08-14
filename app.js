@@ -58,10 +58,10 @@ function retirerSeconde() {
 	// On revient au début quand le chrono arrive à 0
 	if (secondes === 0) {
         revenirDebut();
-        document.getElementById("uke").innerHTML = (tori);
+        document.getElementById("uke").lastChild.textContent = document.getElementById("tori").firstChild.textContent;
         console.log(tori)
         console.log(uke)
-        document.getElementById("tori").innerHTML = (suivant);
+        document.getElementById("tori").lastChild.textContent = (document.getElementById("suivant").firstChild.textContent);
         document.getElementById("suivant").innerHTML = " ? ".bold();
 	}
 
@@ -117,6 +117,7 @@ function tirageAleatoire_1() {
             document.getElementById(participants).innerHTML = partis;
             document.getElementById("uke").innerHTML = partis;
             document.getElementById(participants).classList.add("retourne");
+            console.log(document.getElementById("uke").lastChild);
         }
     };
     eliminer();
