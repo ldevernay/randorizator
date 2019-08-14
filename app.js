@@ -1,9 +1,43 @@
 ///////////////////////////////////////////////////////////////////////
+
 // Tableau des joueurs : 
 
-let participants = ["Anthony", "Audrey", "Baptiste", "Carole", "Cécile", "Claire", "Elodie",
-    "Fred", "Marie-Laure", "Marveen", "Morgane", "Patern", "Timothée", "Vincent", "Yoan"]
-console.log(participants);
+let participants = [];
+
+// Appel JSON :
+
+let template = "";
+let html = "";
+
+$.getJSON("./promo.json", function (data) {
+
+    // On prend tous les noms du JSON et on les push dans un tableau
+    data.Promotion.forEach(x => participants.push(x.prenom));
+    console.log(participants);
+
+    template = `
+    <div class="joueurn" id="{{prenom}}">{{prenom}}
+    <img class="photo" src="{{photo}}" alt="Photo apprenant">
+    </div>
+    `
+    data.Promotion.forEach(apprenant => (html += Mustache.to_html(template, apprenant)));
+    $("#joueurs").html(html);
+
+// Eliminer les absents :
+    $(".joueurn").click(function () {
+        if ($(this).hasClass("retourne") === false) {
+            $(this).addClass("retourne");
+            $(this).children("img").hide();
+            $(this).css("background", "red");
+            participants.splice(participants.indexOf(this.id), 1);
+            //console.log(this.id);
+            console.log(participants);
+            fatality.play();
+        }
+    })
+});
+
+
 
 //////////////////////////////////////////////////////////////////////
 
@@ -17,7 +51,7 @@ let fatality = new Audio("./sounds/fatality.mp3")
 
 function id(el) {
     return document.getElementById(el);
-}
+}    
 
 let secondes = 300;
 let secondesFormate;
@@ -31,21 +65,21 @@ id("lancer").addEventListener("click", function () {
     if (caTourne === false) {
         caTourne = true;
         interval = setInterval(retirerSeconde, 20);
-    }
-});
+    }    
+});    
 
 // Bouton "Pause"
 id("pause").addEventListener("click", function () {
     caTourne = false;
     clearInterval(interval);
-});
+});    
 
 // Bouton "Stop"
 id("stop").addEventListener("click", function () {
     caTourne = false;
     clearInterval(interval);
     revenirDebut();
-});
+});    
 
 function retirerSeconde() {
     secondes--;
@@ -56,12 +90,13 @@ function retirerSeconde() {
         couleurBarre = "darkorange";
         tirageAleatoire_3();
         ting.play();
-    }
+    }    
 
     // On stresse beaucoup quand il reste 15 secondes
     if (secondes === 15) {
         couleurBarre = "red";
-    }
+        id("prog").classList.add("stress");
+    }    
 
     // On revient au début quand le chrono arrive à 0
     if (secondes === 0) {
@@ -70,13 +105,13 @@ function retirerSeconde() {
         id("tori").lastChild.textContent = (id("suivant").firstChild.textContent);
         id("suivant").innerHTML = " ? ".bold();
         buzz.play();
-    }
+    }    
 
     // On met à jour l'apparence de la barre de progression à chaque seconde
     id("prog").setAttribute(
         "style",
         `width: ${pourcentage}%;background: ${couleurBarre};`
-    );
+    );    
 
     // On gère le formatage des minutes et des secondes
     secondesFormate = secondes % 60;
@@ -84,7 +119,7 @@ function retirerSeconde() {
     id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
         .toString()
         .slice(-2)}`;
-}
+}        
 
 function revenirDebut() {
     secondes = 300;
@@ -94,8 +129,9 @@ function revenirDebut() {
     id("compteur").innerHTML = `${minutesFormate}:${("0" + secondesFormate)
         .toString()
         .slice(-2)}`;
-    id("prog").setAttribute("style", `width: 100%;background: green`);
-}
+    id("prog").setAttribute("style", `width: 100%;background: green`); 
+    id("prog").classList.remove("stress");
+}    
 
 ///////////////////////////////////////////////////////////////
 
@@ -115,19 +151,16 @@ function ukeTori() {
     id("stop").removeAttribute("disabled");
     tirageAleatoire_1();
     tirageAleatoire_2();
-    //tirageAleatoire_3();
-}
+}    
 
 function tirageAleatoire_1() {
     function aleatoire_1() {
-        var max = Math.floor(participants.length)
+        var max = participants.length;
         return Math.floor(Math.random() * max);
-    };
+    };    
     function eliminer() {
-        let degage = aleatoire_1()
-        console.log(degage);
+        let degage = aleatoire_1();
         let partis = participants.splice(degage, 1);
-        console.log(partis);
         if (partis.length) {
             id(partis).innerHTML = partis;
             id("uke").innerHTML = partis;
@@ -136,23 +169,19 @@ function tirageAleatoire_1() {
             id(participants).innerHTML = partis;
             id("uke").innerHTML = partis;
             id(participants).classList.add("retourne");
-            console.log(id("uke").lastChild);
-        }
-    };
+        }    
+    };    
     eliminer();
-    console.log(uke);
     console.log(participants);
-}
+}    
 function tirageAleatoire_2() {
     function aleatoire_2() {
-        var max = Math.floor(participants.length)
+        var max = participants.length;
         return Math.floor(Math.random() * max);
-    };
+    };    
     function eliminer() {
-        let degage = aleatoire_2()
-        console.log(degage);
+        let degage = aleatoire_2();
         let partis = participants.splice(degage, 1);
-        console.log(partis);
         if (partis.length) {
             id(partis).innerHTML = partis;
             id("tori").innerHTML = partis;
@@ -161,22 +190,19 @@ function tirageAleatoire_2() {
             id(participants).innerHTML = partis;
             id("tori").innerHTML = partis;
             id(participants).classList.add("retourne");
-        }
-    };
+        }    
+    };    
     eliminer();
-    console.log(tori);
     console.log(participants);
-}
+}    
 function tirageAleatoire_3() {
     function aleatoire_3() {
-        var max = Math.floor(participants.length)
+        var max = participants.length;
         return Math.floor(Math.random() * max);
-    };
+    };    
     function eliminer() {
-        let degage = aleatoire_3()
-        console.log(degage);
+        let degage = aleatoire_3();
         let partis = participants.splice(degage, 1);
-        console.log(partis);
         if (partis.length) {
             id(partis).innerHTML = partis;
             id("suivant").innerHTML = partis;
@@ -185,65 +211,9 @@ function tirageAleatoire_3() {
             id(participants).innerHTML = partis;
             id("suivant").innerHTML = partis;
             id(participants).classList.add("retourne");
-        }
-    };
-    eliminer();
-    console.log(suivant);
-    console.log(participants);
-}
-
-// Tirage aléatoire :
-
-
-function tirageAleatoire() {
-    function aleatoire() {
-        var max = Math.floor(participants.length)
-        return Math.floor(Math.random() * max);
-    };
-
-    function eliminer() {
-        let degage = aleatoire()
-        console.log(degage);
-        let partis = participants.splice(degage, 1);
-        console.log(partis);
-        if (partis.length) {
-            id(partis).innerHTML = partis;
-            id(partis).classList.add("retourne");
-        } else {
-            id(participants).innerHTML = partis;
-            id(participants).classList.add("retourne");
-        }
-    };
+        }    
+    };    
     eliminer();
     console.log(participants);
-}
-
-// Sortir les absents du jour :
-
-
-/////////////////////////////////////////////////
-// Appel JSON :
-
-$.getJSON("./promo.json", function (data) {
-    var template = `
-    <div class="joueurn" id="{{prenom}}">{{prenom}}
-    <img src="{{photo}}" alt="Photo apprenant">
-    </div>
-    `
-    let html = "";
-
-    data.Promotion.forEach(apprenant => (html += Mustache.to_html(template, apprenant)));
-    $("#joueurs").html(html);
-
-    $(".joueurn").click(function () {
-        console.log("ddd");
-        $(this).addClass("retourne");
-        participants.splice(participants.indexOf(this.id), 1);
-        //console.log(this.id);
-        console.log(participants);
-        fatality.play();
-    })
-});
-
-
+}    
 

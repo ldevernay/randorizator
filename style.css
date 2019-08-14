@@ -21,13 +21,26 @@ header {
 	margin-bottom: 30px;
 	text-align: center;
 	width: 100%;
-	height: 35px;
+	height: 45px;
 }
 
 #prog {
 	height: 100%;
 	background: green;
+
 }
+
+@keyframes pulse {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 100;
+		}
+	}
+	.stress {
+		animation: pulse 300ms ease-in-out infinite alternate;
+	}
 
 #boutons {
 	display: flex;
@@ -59,11 +72,7 @@ header {
 
 h3 {
 	margin: 0px;
-	font-size: 40px;
-}
-
-.pr {
-	margin-bottom: ;
+	font-size: 30px;
 }
 
 .role {
@@ -88,16 +97,23 @@ h3 {
 }
 
 .joueurn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 	border: 2px black solid;
 	border-radius: 10px;
 	box-shadow: 5px 5px 5px grey;
 	background-color: darkorange;
 	margin: 5px;
-	padding: 10px;
-	width: 15%;
-	height: 90px;
+	padding: 5px;
+	width: 17%;
 	text-align: center;
-	font-size: 30px;
+	font-size: 25px;
+}
+
+.joueurn > img {
+	height: initial;
+	width: initial;
 }
 
 .retourne {
