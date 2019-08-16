@@ -1,5 +1,4 @@
 ///////////////////////////////////////////////////////////////////////
-
 // Tableau des joueurs : 
 
 let participants = [];
@@ -37,16 +36,13 @@ $.getJSON("./promo.json", function (data) {
     })
 });
 
-
-
-//////////////////////////////////////////////////////////////////////
-
 // On charge les sons (on les a choisis exprès pour qu'ils soient le plus énervants possible)
 
 let ting = new Audio("./sounds/ting.wav")
 let buzz = new Audio("./sounds/buzz.wav")
 let fatality = new Audio("./sounds/fatality.mp3")
 
+/////////////////////////////////////////////////////////////////////////
 // Chrono + Jauge :
 
 function id(el) {
@@ -102,6 +98,7 @@ function retirerSeconde() {
     if (secondes === 0) {
         revenirDebut();
         id("uke").lastChild.textContent = id("tori").firstChild.textContent;
+        console.log(tori)
         id("tori").lastChild.textContent = (id("suivant").firstChild.textContent);
         id("suivant").innerHTML = " ? ".bold();
         buzz.play();
