@@ -1,0 +1,65 @@
+{
+"Promotion" : [
+    {
+        "prenom" : "Anthony",
+        "photo" : "./photos/anthony.jpeg"
+    },
+    {
+        "prenom" : "Audrey",
+        "photo" : "./photos/audrey.jpeg"
+    },
+    {
+        "prenom" : "Baptiste",
+        "photo" : "./photos/baptiste.jpeg"
+    },
+    {
+        "prenom" : "Carole",
+        "photo" : "./photos/carole.jpeg"
+    },
+    {
+        "prenom" : "Cécile",
+        "photo" : "./photos/cecile.jpeg"
+    },
+    {
+        "prenom" : "Claire",
+        "photo" : "./photos/claire.jpeg"
+    },
+    {
+        "prenom" : "Elodie",
+        "photo" : "./photos/elodie.jpeg"
+    },
+    {
+        "prenom" : "Fred",
+        "photo" : "./photos/frederic.jpeg"
+    },
+    {
+        "prenom" : "Marie-Laure",
+        "photo" : "./photos/marie-laure.jpeg"
+    },
+    {
+        "prenom" : "Marveen",
+        "photo" : "./photos/marveen.jpeg"
+    },
+    {
+        "prenom" : "Morgane",
+        "photo" : "./photos/morgane.jpeg"
+    },
+    {
+        "prenom" : "Patern",
+        "photo" : "./photos/paterne.jpeg"
+    },
+    {
+        "prenom" : "Timothée",
+        "photo" : "./photos/timothee.jpeg"
+    },
+    {
+        "prenom" : "Vincent",
+        "photo" : "./photos/vincent.jpeg"
+    },
+    {
+        "prenom" : "Yoan",
+        "photo" : "./photos/yoan.jpeg"
+    }
+
+]
+}
