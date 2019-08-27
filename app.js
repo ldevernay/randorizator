@@ -3,13 +3,14 @@
 
 let participants = [];
 
+
 // Appel JSON :
 
 let template = "";
 let html = "";
 
 $.getJSON("./promo.json", function (data) {
-
+    console.log(data)
     // On prend tous les noms du JSON et on les push dans un tableau
     data.Promotion.forEach(x => participants.push(x.prenom));
     console.log(participants);
