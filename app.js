@@ -3,6 +3,8 @@
 
 let participants = [];
 
+// Synthèse vocale
+let synth = window.speechSynthesis;
 
 // Appel JSON :
 
@@ -27,7 +29,7 @@ fetch("./promo.json")
 
     // Eliminer les absents :
     document.querySelectorAll(".joueurn").forEach(x =>
-      x.addEventListener("click", function() {
+      x.addEventListener("click", function () {
         if (this.classList.contains("retourne") === false) {
           this.classList.add("retourne");
           this.style.background = "red";
@@ -65,7 +67,7 @@ let caTourne = false;
 let couleurBarre = "green";
 
 // Bouton "Lancer"
-id("lancer").addEventListener("click", function() {
+id("lancer").addEventListener("click", function () {
   if (caTourne === false) {
     caTourne = true;
     interval = setInterval(retirerSeconde, 1000);
@@ -73,13 +75,13 @@ id("lancer").addEventListener("click", function() {
 });
 
 // Bouton "Pause"
-id("pause").addEventListener("click", function() {
+id("pause").addEventListener("click", function () {
   caTourne = false;
   clearInterval(interval);
 });
 
 // Bouton "Stop"
-id("stop").addEventListener("click", function() {
+id("stop").addEventListener("click", function () {
   caTourne = false;
   clearInterval(interval);
   revenirDebut();
@@ -105,10 +107,22 @@ function retirerSeconde() {
   // On revient au début quand le chrono arrive à 0
   if (secondes === 0) {
     revenirDebut();
+    var tori = id("tori").firstChild.textContent;
+    var uke = id("uke").firstChild.textContent;
+    var suivant = id("suivant").firstChild.textContent;
+
+    speakAuClavier(suivant);
+    speakTuCommandes(tori);
+    speakTuSors(uke);
     id("uke").lastChild.textContent = id("tori").firstChild.textContent;
     id("tori").lastChild.textContent = id("suivant").firstChild.textContent;
     id("suivant").innerHTML = " ? ".bold();
     buzz.play();
+  }
+
+  function speak(name) {
+    var utterThis = new SpeechSynthesisUtterance("");
+    synth.speak(utterThis);
   }
 
   // On met à jour l'apparence de la barre de progression à chaque seconde
@@ -172,6 +186,7 @@ function tirageAleatoire_1() {
       id("uke").innerHTML = partis;
       id(participants).classList.add("retourne");
     }
+    speakTuCommandes(partis[0]);
   }
   eliminer();
   console.log(participants);
@@ -193,6 +208,8 @@ function tirageAleatoire_2() {
       id("tori").innerHTML = partis;
       id(participants).classList.add("retourne");
     }
+    console.log(partis);
+    speakAuClavier(partis[0]);
   }
   eliminer();
   console.log(participants);
@@ -217,4 +234,25 @@ function tirageAleatoire_3() {
   }
   eliminer();
   console.log(participants);
+}
+
+function speakAuClavier(name) {
+  if (name) {
+    var speech = new SpeechSynthesisUtterance(name + ", tu vas au clavier ");
+    synth.speak(speech);
+  }
+}
+
+function speakTuCommandes(name) {
+  if (name) {
+    var speech = new SpeechSynthesisUtterance(name + ", tu donnes les instructions");
+    synth.speak(speech);
+  }
+}
+
+function speakTuSors(name) {
+  if (name) {
+    var speech = new SpeechSynthesisUtterance(name + ", tu retournes à ta place!");
+    synth.speak(speech);
+  }
 }
