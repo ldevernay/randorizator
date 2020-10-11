@@ -69,13 +69,17 @@ id("lancer").addEventListener("click", function() {
   if (caTourne === false) {
     caTourne = true;
     interval = setInterval(retirerSeconde, 1000);
+    id("pause").removeAttribute("disabled");
+    id("lancer").setAttribute("disabled", "");
   }
 });
 
 // Bouton "Pause"
 id("pause").addEventListener("click", function() {
   caTourne = false;
-  clearInterval(interval);
+  clearInterval( interval );
+  id("lancer").removeAttribute("disabled");
+  id("pause").setAttribute("disabled", "");  
 });
 
 // Bouton "Stop"
@@ -149,8 +153,8 @@ id("stop").setAttribute("disabled", "");
 function ukeTori() {
   id("ukeTori").setAttribute("disabled", "");
   id("lancer").removeAttribute("disabled");
-  id("pause").removeAttribute("disabled");
-  id("stop").removeAttribute("disabled");
+//   id("pause").removeAttribute("disabled");
+//   id("stop").removeAttribute("disabled");
   tirageAleatoire_1();
   tirageAleatoire_2();
 }
